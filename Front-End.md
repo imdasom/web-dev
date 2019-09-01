@@ -48,7 +48,10 @@
 - 코드최적화, 가비지컬렉팅 등의 작업을 함
 
 ### 이벤트버블링, 이벤트캡쳐링
-- ?
+- 엘리먼트에서 이벤트가 감지되었을 때, 부모 혹은 자식 노드로 이벤트가 전달되는 것
+- 버블링 : 자식 --> 부모로 전달, 캡쳐링 : 부모 --> 자식으로 전달
+- event.target : 이벤트 최초 발생 엘리먼트
+- event.currentTarget : 이벤트를 전달 받은 엘리먼트
 
 ### When browser requests a Web page
 <https://vanseodesign.com/web-design/browser-requests/>
@@ -67,4 +70,9 @@
 const moment = require('moment');    // CommonJs
 import moment from 'moment';        // ES6
 ```
-ES6 모듈 시스템의 장점 : 비동기로 동작하며 필요한 모듈만 불러와 성능 및 메모리 최적화에 유리하다. 
+ES6 모듈 시스템의 장점 : 비동기로 동작하며 필요한 모듈만 불러와 성능 및 메모리 최적화에 유리하다.
+
+### null vs undefined
+- null : 빈값을 의미하는 객체
+- undefined : 자료형조차 결정되지 않은 상태를 의미
+
