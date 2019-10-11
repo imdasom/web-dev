@@ -5,43 +5,29 @@
 const subsetsWithDup = function(nums) {
   let duplicateCount = {}; // key: value, 2(중복되는숫자): 3(중복개수)
   nums.forEach(n => duplicateCount[n] = (duplicateCount[n] || 0) + 1);
-  let arrDistinct = getDistinctList(duplicateCount); //[1, 4, 5]
-  let arrMultipleList = getMultipleList(duplicateCount); //[2, 3]
+  let list = getDistinctAndMultipleList(duplicateCount);
+  let arrDistinct = list.arrDistinct;
+  let arrMultipleList = list.arrMultiple; //[2, 3]
 
   let subsets = [];
   let subsetsDistinctList = getSubset([...new Array(arrDistinct.length)], arrDistinct, 0); // [ [], [1], [4], [5], [1,4], ... ]
-  let subsetNewCreated = subsetsDistinctList.slice(0);
+  subsets = subsets.concat(subsetsDistinctList);
+
   for(let j = 0; j < arrMultipleList.length; j++) {
     let arrMultiple = arrMultipleList[j]; // 2
     let subsetsForList = []; // [ [2], [2,2], [2,2,2] ]
     for(let count = 1; count <= duplicateCount[arrMultiple]; count++) {
       subsetsForList.push([...new Array(count)].map(n=>arrMultiple));
     }
-    let subsetNewCreatedTemp = [];
+    let subsetsCopy = subsets.slice(0);
+    let subsetNewCreated = [];
     for(let m = 0; m < subsetsForList.length; m++) {
-      for(let k = 0; k < subsetNewCreated.length; k++) {
-        console.log('merge');
-        console.log(subsetsForList[m]);
-        console.log(subsetNewCreated[k]);
-        subsetNewCreatedTemp.push(subsetsForList[m].concat(subsetNewCreated[k]));
+      for(let k = 0; k < subsetsCopy.length; k++) {
+        subsetNewCreated.push(subsetsForList[m].concat(subsetsCopy[k]));
       }
     }
-    subsetNewCreated = subsetNewCreatedTemp;
+    subsets = subsets.concat(subsetNewCreated);
   }
-  return subsetNewCreated.concat(subsetsDistinctList);
-};
-
-const mergeSubsets = function(subsetDistinct, subsetsForList) {
-  let subsets = [];
-  for(let k = 0; k < subsetsForList.length; k++) {
-    const subsetFor = subsetsForList[k]; // [2]
-    let newSubsets = subsetDistinct.concat(subsetFor); //[2]
-    subsets.push(newSubsets);
-  }
-  console.log('merge');
-  console.log(subsetDistinct);
-  console.log(subsetsForList);
-  console.log(subsets);
   return subsets;
 };
 
@@ -67,30 +53,20 @@ const flagToSubset = function(flagList, matchList) {
   return subset;
 };
 
-function getDistinctList(duplicateCount) {
+function getDistinctAndMultipleList(duplicateCount) {
   let arrDistinct = [];
+  let arrMultiple = [];
   const duplicateNums = Object.getOwnPropertyNames(duplicateCount);
   for(let i = 0; i < duplicateNums.length; i++) {
     let num = duplicateNums[i];
     let count = duplicateCount[num];
     if(count === 1) {
       arrDistinct.push(num);
-    }
-  }
-  return arrDistinct;
-}
-
-function getMultipleList(duplicateCount) {
-  let arrMultiple = [];
-  const duplicateNums = Object.getOwnPropertyNames(duplicateCount);
-  for(let i = 0; i < duplicateNums.length; i++) {
-    let num = duplicateNums[i];
-    let count = duplicateCount[num];
-    if(count > 1) {
+    } else if(count > 1) {
       arrMultiple.push(num);
     }
   }
-  return arrMultiple;
+  return {arrDistinct, arrMultiple};
 }
 
 // console.log(subsetsWithDup([1, 2, 2, 2, 3, 3, 4, 5]));
