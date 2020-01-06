@@ -108,6 +108,7 @@
 - BFCache가 원인인 것 같음
 - 대안1. pageshow, pagehide 이벤트를 사용하는 것을 대안으로 제시함
 - 대안2. history back/forward가 되었다는 것은 window.performance.navigation.type으로 알 수 있으므로 처리 가능
-- Navigation Timing https://developer.mozilla.org/ko/docs/Navigation_timing
 - BFCache 설명 https://programmingsummaries.tistory.com/380
 - BFCache https://developer.mozilla.org/en-US/docs/Archive/Misc_top_level/Working_with_BFCache
+- Navigation Timing https://developer.mozilla.org/ko/docs/Navigation_timing
+- Navigation Timing으로 해결 https://tnsgud.tistory.com/387
