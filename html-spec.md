@@ -102,3 +102,10 @@
 		this.validNumber = null
 		this.state.number = null
 ```
+
+### BFCache
+- IPhone 파이어폭스, 사파리에서 swipe back/forward시 스크립트가 제대로 실행되지 않는 이슈가 있었음
+- BFCache가 원인인 것 같음
+- pageshow, pagehide 이벤트를 사용하는 것을 대안으로 제시함
+- https://programmingsummaries.tistory.com/380
+- https://developer.mozilla.org/en-US/docs/Archive/Misc_top_level/Working_with_BFCache
