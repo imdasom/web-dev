@@ -10,97 +10,33 @@
 <input type="number" pattern="[0-9]*"/> 
 ```  
 ### 사파리 onChnage, onBlur, runder 이벤트 트리거링이 다른 문제
+input type="number" 인풋에 0을 입력하면 '개수 제한이 없다면...' 알럿을 띄우는 과정에서 나타난 문제
 ```
 1. PC 브라우저
-0입력시
-	onChange
-		this.numberInput.value = 0
-		this.validNumber = null
-		this.state.number = null
-		
-	onBlur
-		this.numberInput.value = 0
-		this.validNumber = null
-		this.state.number = null
-		
-	개수제한없이 alert
-	
-	onChange setState (selectCount)
-		this.numberInput.value = null
-		this.validNumber = null
-		this.state.number = null
-		selectCount = 0
-		
-	onBlur
-		this.numberInput.value = null
-		this.validNumber = null
-		this.state.number = null
-		
-	onBlur setState (validNumber)
-		this.numberInput.value = null
-		this.validNumber = null
-		this.state.number = null
-	
-	render()
-		this.numberInput.value = null
-		this.validNumber = null
-		this.state.number = 0
+	onChange()
+	onBlur()
+	alert('...') 확인 클릭
+	onChange()에서 setState호출		
+	onBlur()
+	onBlur()에서 setState호출
+	render() ==> 한번호출됨
 ```
 ```
 2. 안드로이드 브라우저
-0입력시
-	onChange
-		this.numberInput.value = 0
-		this.validNumber = null
-		this.state.number = null
-		
-	개수제한없이 alert
-	
-	onChange setState
-		this.numberInput.value = null
-		this.validNumber = null
-		this.state.number = null	
-	
-	render()
-		this.numberInput.value = null
-		this.validNumber = null
-		this.state.number = 0
+	onChange()
+	alert('...') 확인 클릭
+	onChange()에서 setState호출
+	render() ==> 한번호출됨
 ```
 ```
-3. iphone
-0입력시
-	onChange
-		this.numberInput.value = 0
-		this.validNumber = null
-		this.state.number = null
-		
-	개수제한없이 alert
-	
-	onChange setState (selectCount)
-		this.numberInput.value = null
-		this.validNumber = null
-		this.state.number = null
-		selectCount = 0
-		
+3. iphone 사파리
+	onChange()
+	alert('...') 확인 클릭
+	onChange()에서 setState호출
 	render()
-		this.numberInput.value = null
-		this.validNumber = null
-		this.state.number = 0
-		
-	onBlur
-		this.numberInput.value = null
-		this.validNumber = null
-		this.state.number = 0
-		
-	onBlur setState (validNumber)
-		this.numberInput.value = null
-		this.validNumber = null
-		this.state.number = 0
-		
-	render() --> 아까 onChange로 인한 setState가 세팅되는듯..
-		this.numberInput.value = null
-		this.validNumber = null
-		this.state.number = null
+	onBlur()
+	onBlur()에서 setState호출
+	render() ==> 두번 호출됨
 ```
 
 ### BFCache, Navigation Timing
