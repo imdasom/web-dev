@@ -1,4 +1,4 @@
-## ESLint setting
+## ESLint 사용시 path alias 세팅한 경우
 - jsconfig로 path alias 세팅한 경우 eslint resolver설치하여 준다
 ```json
 //jsconfig.js
@@ -21,6 +21,15 @@ npm install --save-dev babel-eslint eslint-import-resolver-webpack
 }
 ```
 
+## ESLint 사용시 TemplateLiteral 에러 발생시
+```javascript
+//.eslintrc.js
+{
+  'indent': ['error', 2 {
+    'ignoredNodes': ['TemplateLiteral'] //백틱을 무시하도록 설정해준다
+  }]
+}
+```
 
 ## jest config
 - path alias 사용하여 import 하는 경우 jest에서도 인식할 수 있도록 세팅해준다
