@@ -1,3 +1,31 @@
+## ESLint setting
+- jsconfig로 path alias 세팅한 경우 eslint resolver설치하여 준다
+```json
+//jsconfig.js
+{
+  "paths": {
+    "@/*": ["src/*"]
+  }
+}
+```
+```
+npm install -D eslint-import-resolver-alias
+```
+```javascript
+//.eslintrc.js
+{
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "map": ["@", "./src"],
+        "extensions": [".js"]
+      }
+    }
+  }
+}
+```
+
+
 ## jest config
 - path alias 사용하여 import 하는 경우 jest에서도 인식할 수 있도록 세팅해준다
 ```javascript
