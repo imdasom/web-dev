@@ -9,18 +9,14 @@
 }
 ```
 ```
-npm install -D eslint-import-resolver-alias
+npm install --save-dev babel-eslint eslint-import-resolver-webpack
 ```
 ```javascript
 //.eslintrc.js
 {
   "settings": {
-    "import/resolver": {
-      "alias": {
-        "map": ["@", "./src"],
-        "extensions": [".js"]
-      }
-    }
+    "parser": "babel-eslint"
+    "import/resolver": "webpack"
   }
 }
 ```
