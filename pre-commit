@@ -1,0 +1,48 @@
+#!/usr/bin/perl
+use Cwd qw(cwd);
+$PWD = cwd;
+$STATUS = system("cd $PWD/.git/hooks/pre-commit-config && ./pre-commit-init.sh && cd ../../..");
+if ($STATUS == -1) {
+	print STDERR "pre-commit-init error";
+	exit -1;
+}
+
+$CONFIG_WORKING_DIR = "checkstyle.project-root";
+$CONFIG_CHECK_FILE = "checkstyle.checkfile";
+$CONFIG_JAR = "checkstyle.jar";
+$CONFIG_JAVA = "java.command";
+$working_directory = `git config --get $CONFIG_WORKING_DIR`;
+$check_file = `git config --get $CONFIG_CHECK_FILE`;
+$checkstyle_jar = `git config --get $CONFIG_JAR`;
+
+$command = "git-diff-index --cached HEAD 2>&1 | sed 's/^:.*	//' | uniq";
+open (FILES,$command . "|") || die "Cannot run '$command': $!\n";
+if (!$check_file || !$checkstyle_jar)
+{
+	die "You must configure checkstyle in your git config:\n"
+}
+
+$java_command = "java";
+
+chomp $check_file;
+chomp $checkstyle_jar;
+chomp $java_command;
+
+$command = "java -jar $checkstyle_jar -c $check_file --include-staged-codes --git-dir ";
+$command .= $working_directory;
+
+print $command;
+
+if (&run_and_log_system ($command))
+{
+	print STDERR "Commit aborted.\n";
+	exit -1;
+}
+
+exit 0;
+
+sub run_and_log_system
+{
+	($cmd) = @_;
+	system $cmd;
+}
