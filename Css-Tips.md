@@ -1,3 +1,12 @@
+### flex 속성을 사용한 정렬
+- https://jsbin.com/qaquzurepo/edit?html,js,output
+- https://heropy.blog/2018/11/24/css-flexible-box/
+```
+.cover {
+  display: flex;
+  justify-content: center;
+}
+```
 ### Selector
 #### X[foo~="bar"]
 커스텀 속성 방식을 사용. 띄어쓰기로 구분한 목록을 찾을 수 있음
