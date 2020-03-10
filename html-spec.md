@@ -1,3 +1,18 @@
+### normalize newline
+OS마다 개행문자가 다르므로 normalize작업을 해주어야 할 필요가 있다. 아래 가이드를 따라 replace작업을 해주었다.
+```
+Normalize newlines
+To normalize newlines in a string, replace every U+000D CR U+000A LF code point pair with a single U+000A LF code point, and then replace every remaining U+000D CR code point with a U+000A LF code point.
+```
+```
+Line break 표기
+Unix System : \n
+MS-DOS, Window 등 대부분 : \r\n
+To denote a single line break, Unix programs use line feed, whose hexadecimal value in ASCII is 0a, while most programs common to MS-DOS and Microsoft Windows use carriage return+line feed, whose hexadecimal value in ASCII is 0d 0a. In ASCII, carriage return is a distinct control character.
+```
+- https://infra.spec.whatwg.org/#normalize-newlines
+- https://en.wikipedia.org/wiki/Newline#Unicode
+
 ### input type="number"
 - 넘버타입의 input은 기본적으로 숫자만 유효한 값으로 인식한다.
 - 숫자외의 문자열이 입력되면 input에 값이 입력되어 보이지만 내부 value는 null이 된다.
