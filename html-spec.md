@@ -1,15 +1,11 @@
 ### normalize newline
 OS마다 개행문자가 다르므로 normalize작업을 해주어야 할 필요가 있다. 아래 가이드를 따라 replace작업을 해주었다.
-```
-Normalize newlines
-To normalize newlines in a string, replace every U+000D CR U+000A LF code point pair with a single U+000A LF code point, and then replace every remaining U+000D CR code point with a U+000A LF code point.
-```
-```
-Line break 표기
-Unix System : \n
-MS-DOS, Window 등 대부분 : \r\n
-To denote a single line break, Unix programs use line feed, whose hexadecimal value in ASCII is 0a, while most programs common to MS-DOS and Microsoft Windows use carriage return+line feed, whose hexadecimal value in ASCII is 0d 0a. In ASCII, carriage return is a distinct control character.
-```
+> To normalize newlines in a string, replace every U+000D CR U+000A LF code point pair with a single U+000A LF code point, and then replace every remaining U+000D CR code point with a U+000A LF code point.
+
+Line break 표기는 Unix System은 \n, MS-DOS, Window 등 대부분은 \r\n을 사용한다.
+> To denote a single line break, Unix programs use line feed, whose hexadecimal value in ASCII is 0a, while most programs common to MS-DOS and Microsoft Windows use carriage return+line feed, whose hexadecimal value in ASCII is 0d 0a. In ASCII, carriage return is a distinct control character.
+
+참고링크
 - https://infra.spec.whatwg.org/#normalize-newlines
 - https://en.wikipedia.org/wiki/Newline#Unicode
 
