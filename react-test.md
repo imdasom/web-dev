@@ -1,3 +1,9 @@
+## react, webpack code splitting
+- webpack.config.js : output.chunkFilename : '[name].[chunkhash].js' 로 세팅
+- 청크파일명 설정가능 : https://hackernoon.com/lessons-learned-code-splitting-with-webpack-and-react-f012a989113
+- 각 화면에서 사용하는 모듈 구분이 명확해야 번들링이 효율적으로 할 수 있다.
+- withSplitting 커스텀 컴포넌트 사용하여 lazy loading : https://velog.io/@velopert/react-code-splitting
+
 ## ESLint 사용시 path alias 세팅한 경우
 - jsconfig로 path alias 세팅한 경우 eslint resolver설치하여 준다
 ```json
