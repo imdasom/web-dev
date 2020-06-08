@@ -11,26 +11,28 @@ rl.on('line', (line) => {
 })
 .on('close', () => {
 	let N = input[0].split(' ')[0];
-		N = Number(N);	
+	    N = Number(N);	
 	let L = input[0].split(' ')[1];
-		L = Number(L);	
+	    L = Number(L);	
 	const arr = input[1].split(' ').map((str) => new Number(str));
-	const cache = getMinArr(N, L, arr);
-	console.log(cache[L]);
+	const minArr = getMinArr(N, L, arr);
+	console.log(minArr.join(' '));
 });
 
 function getMinArr(N, L, arr) {
 	let cache = [];
-	for (let i = 0; i <= N; i++) {
+	for (let i = 0; i < N; i++) {
 		cache.push([]);
 	}
-	for (let i = 1; i <= N; i++) {
+	for (let i = 0; i < N; i++) {
 		let min = Number.MAX_SAFE_INTEGER;
-		for (let j = 0; j < N; j++) {
-			const emptyWindow = j + 1 < i;
-			min = emptyWindow ? min : Math.min(min, arr[j]);
-			cache[j + 1][j] = emptyWindow ? arr[0] : min;
+		for (let j = 0; j <= L && j + i < N; j++) {
+			min = Math.min(min, arr[j + i]);
+			cache[j].push(min);
 		}
 	}
-	return cache;
+	for (let i = 0; i < L - 1; i++) {
+		cache[L - 1].unshift(cache[L - 1][0]);
+	}
+	return cache[L - 1];
 }
