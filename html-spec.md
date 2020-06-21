@@ -1,3 +1,23 @@
+### `<fieldset>` 태그 활용
+- 특정 컨디션에 따라 여러개의 인풋을 활성화/비활성화해야 하는 경우에 유용한 태그.
+- 여러개의 인풋을 `<fieldset>`으로 묶으면, `<fieldset>`단위로 `disabled`할 수 있다.
+- 참고 링크 : https://developer.mozilla.org/ko/docs/Web/HTML/Element/fieldset
+```html
+<form action="#">
+  <fieldset disabled>
+    <legend>Disabled fieldset</legend>
+    <div>
+      <label for="name">Name: </label>
+      <input type="name" id="text" value="Chris">
+    </div>
+    <div>
+      <label for="pwd">Archetype: </label>
+      <input type="password" id="text" value="Wookie">
+    </div>
+  </fieldset>
+</form>
+```
+
 ### normalize newline
 OS마다 개행문자가 다르므로 normalize작업을 해주어야 할 필요가 있다. 아래 가이드를 따라 replace작업을 해주었다.
 > To normalize newlines in a string, replace every U+000D CR U+000A LF code point pair with a single U+000A LF code point, and then replace every remaining U+000D CR code point with a U+000A LF code point.
