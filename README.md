@@ -113,7 +113,7 @@ public class InstrumentedHashSet<E> implements Set<E> {
 |심야할인|세금정책|요금할인정책|TaxableAndRateDiscountableNightlyDiscountPhone|
 |심야할인|요금할인정책|x|RateDiscountableNightlyDiscountPhone|
 |심야할인|요금할인정책|세금정책|RateDiscountableAndTaxableNightlyDiscountPhone|
-|------|---------|--------|------------------|
+
 만약 여기서 부가정책3을 추가한다면? 요금제를 추가한다면? `클래스 폭발(class explosion)` 혹은 `조합의 폭발(combinational explosion)`이 일어난다고 한다.
 
 ### 최선의 방법은 상속을 포기하는 것이다.
