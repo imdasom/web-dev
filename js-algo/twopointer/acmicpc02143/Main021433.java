@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class Main02143 {
+public class Main021433 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int T = Integer.parseInt(br.readLine());
@@ -44,23 +44,24 @@ public class Main02143 {
         int count = 0;
         int left = 0;
         int right = 0;
-        int sum = list.get(0);
-        while (left < list.size()) {
+        int sum = 0;
+        while (true) {
+            if (right == list.size()) {
+                if (left < list.size() - 1) {
+                    sum -= list.get(left++);
+                } else {
+                    break;
+                }
+            } else if (sum >= N || sum + list.get(right) >= N) {
+                sum -= list.get(left++);
+            } else {
+                sum += list.get(right++);
+            }
             if (sum < N) {
                 Integer subsetCount = subsetSumMap.get(N - sum);
                 if (subsetCount != null) {
                     count += subsetCount;
                 }
-                if (right + 1 >= list.size() || sum + list.get(right + 1) >= N) {
-                    sum = sum - list.get(left++);
-                } else {
-                    if (right + 1 >= list.size()) {
-                        break;
-                    }
-                    sum = sum + list.get(++right);
-                }
-            } else {
-                sum = sum - list.get(left++);
             }
         }
         return count;
