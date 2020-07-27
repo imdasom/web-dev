@@ -1,3 +1,13 @@
+### vw, vh overflow
+- 세로스크롤이 존재하는 경우 `width: 100vw`을 사용하면, 세로스크롤의 너비로 인해 가로스크롤이 생긴다. 
+- 다음과 같이 우회하여 보정가능. 제일 깔끔한 방법인 것 같다.
+```css
+.box {
+  width: 100vw;
+  max-width: 100%;
+}
+```
+
 ### flex 속성을 사용한 정렬
 - https://jsbin.com/qaquzurepo/edit?html,js,output
 - https://heropy.blog/2018/11/24/css-flexible-box/
