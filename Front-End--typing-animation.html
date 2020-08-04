@@ -1,0 +1,61 @@
+<html>
+<head>
+	<title>HTML-JS-CSS CheatSheet</title>
+	<style>
+		.typing-hi::after {
+			content: '안녕하세요'; /* 애니메이션 완료 후 남아있을 CSS */
+			animation: typing-hi 1.5s; /* 애니메이션명과 속도 */
+			animation-timing-function: ease-in-out; /* 점점빨라지다가 다시 점점느려지도록 */
+		}
+
+		@keyframes typing-hi {
+			0%		{ content: 'o' }
+			10%		{ content: '아' }
+			20% 	{ content: '안' }
+			30% 	{ content: '안ㄴ' }
+			40% 	{ content: '안녀' }
+			40% 	{ content: '안녕' }
+			50% 	{ content: '안녕ㅎ' }
+			60% 	{ content: '안녕하' }
+			70% 	{ content: '안녕핫' }
+			80% 	{ content: '안녕하세' }
+			90% 	{ content: '안녕하셍' }
+			100% 	{ content: '안녕하세요' }
+		}
+	</style>
+</head>
+<body>
+<h1>Typing Animation</h1>
+<div id="typing-animation">
+	<h3>CSS를 사용한 방법</h3>
+	<div class="typing-hi"></div>
+	
+	<h3>JS를 사용한 방법</h3>
+	<div class="typing-seeya"></div>
+</div>
+</body>
+<script type="text/javascript">
+const typingAnimation = (wordList, intervalTime, typeCallback, clearCallback) => {
+	let i = 0;
+	let typingInterval = setInterval(() => {
+		typeCallback(wordList[i++]);
+		if (i === wordList.length) {
+			clearInterval(typingInterval);
+			clearCallback();
+		}
+	}, intervalTime);
+}
+
+const typingSeeya = document.getElementsByClassName('typing-seeya')[0];
+typingAnimation(
+	[
+		'ㅂ','바','반','반ㄱ','반가','반강','반가우','반가워','반가웠','반가웠ㅇ','반가웠어',
+		'반가웠어!','반가웠어!','반가웠어','반가웠어','반가웠어','반가웠어','반가웠어!','반가웠어!',
+		'반가웠어','반가웠어','반가웠어','반가웠어','반가웠어!'
+	],
+	120,
+	function(word) { typingSeeya.textContent = word; },
+	function() { /* typing chaning... */ }
+);
+</script>
+</html>

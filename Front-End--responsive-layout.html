@@ -1,0 +1,53 @@
+<html>
+<head>
+	<title>HTML-JS-CSS CheatSheet</title>
+	<style>
+		:root {
+			--main-color-1-1: #727933;
+			--main-color-1-2: #575c28;
+			--sub-color-1-1: #efefef;
+			--sub-color-1-2: #b9b9b9;
+			--background-color-1-1: #ffffff;
+			--background-color-1-2: #e6e6e6;
+			--header-min-heigth: 50px;
+			--footer-min-height: 50px;
+			--content-min-height: 106px;
+		}
+		body {
+			margin: 0;
+			padding: 0;
+		}
+		.wrapper.header {
+			background-color: var(--main-color-1-1);
+			border: 1px solid var(--main-color-1-2);
+			min-height: var(--header-min-heigth);
+		}
+		.wrapper.menu {
+			background-color: var(--sub-color-1-1);
+			border: 1px solid var(--sub-color-1-2);
+			display: none;
+		}
+		.wrapper.content {
+			background-color: var(--background-color-1-1);
+			border: 1px solid var(--background-color-1-2);
+			min-height: calc(100vh - var(--content-min-height));
+		}
+		.wrapper.footer {
+			background-color: var(--background-color-1-1);
+			border: 1px solid var(--background-color-1-2);
+			height: var(--footer-min-height);
+		}
+	</style>
+</head>
+<body>
+<div id="layout">
+	<div class="wrapper header">Header</div>
+	<div class="wrapper menu">Menu</div>
+	<div class="wrapper content">Content</div>
+	<div class="wrapper footer">Footer</div>
+</div>
+</body>
+<script type="text/javascript">
+
+</script>
+</html>
