@@ -3,15 +3,20 @@
 	<title>HTML-JS-CSS CheatSheet</title>
 	<style>
 		:root {
+			/* 테마 색상 규칙 */
 			--main-color-1-1: #727933;
 			--main-color-1-2: #575c28;
+			--main-color-2-1: #988e4e;
+			--main-color-2-2: #79703b;
 			--sub-color-1-1: #efefef;
 			--sub-color-1-2: #b9b9b9;
 			--background-color-1-1: #ffffff;
 			--background-color-1-2: #e6e6e6;
+			/* 화면크기에 따라 변하지 않는 헤더/푸터는 픽셀값으로 고정한다 */
 			--header-min-heigth: 50px;
 			--footer-min-height: 50px;
-			--content-min-height: 106px;
+			/* 컨텐츠 min-height 헤더/푸터의 픽셀값에 영향을 받으므로 픽셀으로 고정한다 */
+			--content-min-height: 106px; 
 		}
 		body {
 			margin: 0;
@@ -30,7 +35,7 @@
 		.wrapper.content {
 			background-color: var(--background-color-1-1);
 			border: 1px solid var(--background-color-1-2);
-			min-height: calc(100vh - var(--content-min-height));
+			min-height: calc(100vh - var(--content-min-height)); /* 푸터가 바닥에 붙어있도록 calc 계산해준다 */
 		}
 		.wrapper.footer {
 			background-color: var(--background-color-1-1);
