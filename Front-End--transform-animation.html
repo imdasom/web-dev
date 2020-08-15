@@ -1,0 +1,259 @@
+<html>
+    <head>
+        <title>HTML-JS-CSS CheatSheet</title>
+        <!-- 폰트어썸선언 -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+        <style>
+		@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+        :root {
+			--main-color-1-1: #727933;
+			--main-color-1-2: #575c28;
+			--sub-color-1-1: #efefef;
+			--sub-color-1-2: #b9b9b9;
+			--background-color-1-1: #ffffff;
+			--background-color-1-2: #e6e6e6;
+			--light-font-color-1-1: #ffffff;
+			--header-heigth: 30px;
+            --header-padding: 5px;
+			--footer-min-height: 50px;
+			--menu-min-height: 20px;
+			--content-min-height: 162px;
+			--content-min-height-2: calc(162px + 43px);
+			--content-padding-tb: 10px;
+			--content-padding-rl: 10px;
+			--header-padding-rl: 30px;
+			--max-width: 1000px;
+		}
+		body {
+			font-family: 'Noto Sans KR', sans-serif;
+			font-weight: 100;
+			margin: 0;
+			padding: 0;
+		}
+        header {
+            width: 100%;
+            background-color: #efefef;
+            position: fixed;
+            top: 0;
+            height: var(--header-height);
+            text-align: center;
+            padding: var(--header-padding);
+        }
+        main {
+            margin-top: calc(var(--header-height) + var(--header-padding) + var(--header-padding))
+        }
+		.wrapper {
+			width: 400px;
+			margin: 60px auto;
+		}
+		.arcordion-list {
+			list-style-type: none;
+            padding: 0;
+		}
+		.arcordion-list .header {
+			background-color: #efefef;
+			border: 1px solid #dfdfdf;
+			padding: 10px;
+            transition: height 0.5s ease-out;
+		}
+		.arcordion-list .content {
+			border: 1px solid #dfdfdf;
+			padding: 10px;
+		}
+        .arcordion-item .header .amount {
+            font-size: 1.3em;
+        }
+        .arcordion-item .header .dongList {
+            font-size: 0.8em;
+        }
+        .arcordion-item .content .amount {
+            border: 1px solid #dfdfdf;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 5px;
+        }
+        .arcordion-item .content .dongList .dong {
+            width: 24%;
+            display: inline-block;
+            font-size: 0.8em;
+        }
+        .arcordion-item .arcordion-icon {
+            float: right;
+        }
+        </style>
+        <style>
+        /* 그밖의 스타일 정의 */
+        code {
+			font-family: 'Noto Sans KR', sans-serif;
+			font-weight: 100;
+            background-color: #dfdfdf;
+            padding: 2px 5px;
+            margin: 0px 5px 0px 0px;
+            border-radius: 3px;
+            font-size: 0.8em;
+        }
+        .code-box {
+			font-family: 'Noto Sans KR', sans-serif;
+			font-weight: 100;
+			background-color: var(--sub-color-1-1); 
+			margin: var(--content-padding-tb) 0px; 
+			padding: var(--content-padding-tb);
+            font-size: 0.8em;
+		}
+        </style>
+    </head>
+    <body>
+        <header>
+            Transform Animation
+        </header>
+        <main>
+            <div class="wrapper">
+                <div>
+                    <div><h3><code>height: auto</code>인 경우의 애니메이션 처리</h3></div>
+                    <div>여기 빨간 박스의 height이 자연스럽게 처리 됩니다.</div>
+                    <div>
+                        <code>height: auto</code> 인 경우의 리사이징 애니메이션을 위해 자바스크립트를 사용합니다. height을 수동으로 변경시켜준 뒤, <code>requestAnimationFrame()</code> 혹은 <code>setTimeout()</code>을 이용해 프레임 업데이트를 실행시켜주는 방법을 사용하였습니다.
+                    </div>
+                </div>
+                <br/>
+                <div id="tipDongListWithAnimation">
+                    <ul class="arcordion-list">
+                        <li class="arcordion-item" data-seq="0">
+                            <div class="header" style="border: 2px solid red;">
+                                <i class="arcordion-icon open fas fa-caret-down"></i>
+                                <div>
+                                    <span class="amount">0원</span>
+                                    <div class="dongList">지역을 선택해주세요.</div>
+                                </div>
+                            </div>
+                            <div class="content">
+                                <input type="number" class="amount" placeholder="배달팁을 입력하세요"/>
+                                <div class="dongList">
+                                    <div class="dong"><input type="checkbox" class="dongInput" id="tipdong0_2826054200" checked/><label for="tipdong0_2826054200" class="dongLabel">가정1동</label></div>
+                                    <div class="dong"><input type="checkbox" class="dongInput" id="tipdong0_2826054300" checked/><label for="tipdong0_2826054300" class="dongLabel">가정2동</label></div>
+                                    <div class="dong"><input type="checkbox" class="dongInput" id="tipdong0_2826054400" checked/><label for="tipdong0_2826054400" class="dongLabel">가정3동</label></div>
+                                    <div class="dong"><input type="checkbox" class="dongInput" id="tipdong0_2826058000" checked/><label for="tipdong0_2826058000" class="dongLabel">가좌1동</label></div>
+                                    <div class="dong"><input type="checkbox" class="dongInput" id="tipdong0_2826059000" checked/><label for="tipdong0_2826059000" class="dongLabel">가좌2동</label></div>
+                                    <div class="dong"><input type="checkbox" class="dongInput" id="tipdong0_2826060000" checked/><label for="tipdong0_2826060000" class="dongLabel">가좌3동</label></div>
+                                    <div class="dong"><input type="checkbox" class="dongInput" id="tipdong0_2826061000" checked/><label for="tipdong0_2826061000" class="dongLabel">가좌4동</label></div>
+                                    <div class="dong"><input type="checkbox" class="dongInput" id="tipdong0_2826068000" checked/><label for="tipdong0_2826068000" class="dongLabel">검단동</label></div>
+                                    <div class="dong"><input type="checkbox" class="dongInput" id="tipdong0_2826069000"        /><label for="tipdong0_2826069000" class="dongLabel">검암경서동</label></div>
+                                    <div class="dong"><input type="checkbox" class="dongInput" id="tipdong0_2826070000"        /><label for="tipdong0_2826070000" class="dongLabel">당하동</label></div>
+                                    <div class="dong"><input type="checkbox" class="dongInput" id="tipdong0_2826071000"        /><label for="tipdong0_2826071000" class="dongLabel">마전동</label></div>
+                                    <div class="dong" style="border: 1px solid red; position: relative;"><span style="position: absolute; right: -90px; color: red;">←클릭해보세요</span>
+                                        <input type="checkbox" class="dongInput" id="tipdong0_2826072000"        /><label for="tipdong0_2826072000" class="dongLabel">불로대곡동</label>
+                                    </div>
+                                    <div class="dong"><input type="checkbox" class="dongInput" id="tipdong0_2826073000"        /><label for="tipdong0_2826073000" class="dongLabel">석남1동</label></div>
+                                    <div class="dong"><input type="checkbox" class="dongInput" id="tipdong0_2826074000"        /><label for="tipdong0_2826074000" class="dongLabel">석남2동</label></div>
+                                    <div class="dong"><input type="checkbox" class="dongInput" id="tipdong0_2826075000"        /><label for="tipdong0_2826075000" class="dongLabel">석남3동</label></div>
+                                    <div class="dong"><input type="checkbox" class="dongInput" id="tipdong0_2826076000"        /><label for="tipdong0_2826076000" class="dongLabel">신현원창동</label></div>
+                                    <div class="dong"><input type="checkbox" class="dongInput" id="tipdong0_2826077000"        /><label for="tipdong0_2826077000" class="dongLabel">연희동</label></div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <br/>
+                <div>
+                    <div>변경전 높이 --> 변경후 높이로 height을 직접 수정해줍니다. auto 세팅을 통해 height을 알아내고, <code>requestAnimationFrame()</code>를 통해 다음 프레임에 적용되도록 하여 애니메이션이 표현되도록 합니다.</div>
+                    <pre class="code-box">css
+transition: height 0.5s ease-out;
+
+js
+resizeAnimation($element) {
+    const oldHeight = $element.clientHeight;
+    $element.style.height = 'auto';
+    const newHeight = $element.clientHeight;
+    $element.style.height = oldHeight - 20;
+    requestAnimationFrame(() => {
+        $element.style.height = newHeight - 20;
+    });
+}</pre>
+                </div>                
+            </div>
+        </main>
+    </body>
+    <script type="text/javascript">
+        class TipDong {
+            $header = null;
+            $dongList = null;
+            $amount = null;
+            dongList = [];
+            constructor(container) {
+                if (container.querySelector('.header')) {
+                    this.$header = container.querySelector('.header');
+                }
+                if (container.querySelector('.header .amount')) {
+                    this.$amount = container.querySelector('.header .amount');
+                }
+                if (container.querySelector('.content .amount')) {
+                    container.querySelector('.content .amount').addEventListener('keyup', (event) => {
+                        this.$amount.textContent = event.target.value + '원';
+                    });
+                }
+                if (container.querySelector('.header .dongList')) {
+                    this.$dongList = container.querySelector('.header .dongList');
+                }
+                if (container.querySelector('.content .dongList')) {
+                    container.querySelector('.content .dongList').addEventListener('click', (event) => {
+                            if (event.target.classList.contains('dongInput')) {
+                                if (event.target.checked) {
+                                    this.addDong(event.target.nextSibling.textContent);
+                                } else {
+                                    this.removeDong(event.target.nextSibling.textContent);
+                                }
+                            }
+                        });
+                    Array.prototype.forEach.call(container.querySelectorAll('.content .dongList .dongInput:checked+label'), ($dong) => {
+                        this.addDong($dong.textContent);
+                    });
+                }
+            }
+            addDong(dong) {
+                this.dongList.push(dong);
+                this.$dongList.textContent = this.dongListToString();
+                this.resizeAnimation(this.$header);
+            }
+            removeDong(dong) {
+                this.dongList.splice(
+                    this.dongList.indexOf(dong), 
+                    1
+                );
+                this.$dongList.textContent = this.dongListToString();
+                this.resizeAnimation(this.$header);
+            }
+            resizeAnimation($element) {
+                const oldHeight = $element.clientHeight;
+                $element.style.height = 'auto';
+                const newHeight = $element.clientHeight;
+                $element.style.height = oldHeight - 20;
+                requestAnimationFrame(() => {
+                    $element.style.height = newHeight - 20;
+                });
+            }
+            dongListToString() {
+                return this.dongList.length === 0 ? '지역을 선택해주세요.' : this.dongList.join(', ');
+            }
+        }
+        class TipDongList {
+            $tipDongList = null;
+            tipDongList = [];
+            constructor(container) {
+                const maybeArcodionList = container.getElementsByClassName('arcordion-list');
+                if (maybeArcodionList.length > 0) {
+                    this.$tipDongList = maybeArcodionList[0];
+                    Array.prototype.forEach.call(
+                        this.$tipDongList.getElementsByClassName('arcordion-item'), 
+                        ($arcordionItem) => {
+                            this.tipDongList.push(new TipDong($arcordionItem));
+                        }
+                    );
+                } else {
+                    throw new Error('$tipDongList not defined');
+                }
+            }
+        }
+        const tipDongListWithAnimation = document.getElementById('tipDongListWithAnimation');
+        new TipDongList(tipDongListWithAnimation);
+    </script>
+</html>
