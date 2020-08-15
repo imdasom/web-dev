@@ -1,6 +1,14 @@
 # web-dev
 html, css, react, algorithm 등 웹관련 지식 히스토리
 
+### UI/UX develop
+- 반응형 레이아웃  
+http://htmlpreview.github.io/?https://github.com/imdasom/web-dev/blob/master/Front-End--responsive-layout.html
+- 사용자 경험을 위한 애니메이션 처리  
+http://htmlpreview.github.io/?https://github.com/imdasom/web-dev/blob/master/Front-End--transform-animation.html
+- 타이핑 애니메이션  
+http://htmlpreview.github.io/?https://github.com/imdasom/web-dev/blob/master/Front-End--typing-animation.html
+
 ### 리눅스 파일명 일괄 변경
 - 현재 디렉토리에서 bizcf* 패턴의 파일들을 대상으로 파일명중에 bizc라는 부분을 bizc-SOMETHING으로 수정하겠다는 의미.
 - 로그파일명 규칙을 변경하는 과정에서 기존 로그파일의 이름도 일괄 변경해야 하는 필요가 생겼다. 이럴 때 사용할 수 있음.
