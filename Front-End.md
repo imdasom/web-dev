@@ -1,3 +1,73 @@
+### Typing Animation
+- 타이핑 애니메이션 효과는 css, javascript로 구현할 수 있다
+- ::after는 IE8 이상에서만 동작하므로, 크로스브라우징을 지원하지 못하는 단점이 있다  
+```html
+<!-- main.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+</head>
+<body>
+  <h3>css를 사용한 방법</h3>
+  <div class="typing-hi"></div>
+  
+  <h3>javascript를 사용한 방법</h3>
+  <div class="typing-seeya"></div>
+</body>
+</html>
+```
+```css
+/* style.css */
+.typing-hi::after {
+  content: '안녕하세요';
+  animation: typing-hi 1.5s;  
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes typing-hi {
+  0% { content: 'ㅇ' }
+  10% { content: '아' }
+  20% { content: '안' }
+  30% { content: '안ㄴ' }
+  40% { content: '안녀' }
+  40% { content: '안녕' }
+  50% { content: '안녕ㅎ' }
+  60% { content: '안녕하' }
+  70% { content: '안녕핫' }
+  80% { content: '안녕하세' }
+  90% { content: '안녕하셍' }
+  100% { content: '안녕하세요' }
+}
+```
+```javascript
+// typingAnimation.js
+function typingAnimation(wordList, intervalTime, typeCallback, clearCallback) {
+  var i = 0;
+  var typginInterval = setInterval(function() {
+    typeCallback(wordList[i++]);
+    if (i === wordList.length) {
+      clearInterval(typginInterval);
+      clearCallback();
+    }
+  }, intervalTime);
+}
+
+var typingSeeYa = document.getElementsByClassName('typing-seeya')[0];
+typingAnimation(
+  [
+    'ㅂ', '바', '반', '반ㄱ', '반가', '반강', '반가우', 
+    '반가웠', '반가웠ㅇ', '반가웠어', '반가웠어!', '반가웠어!', '반가웠어', '반가웠어', '반가웠어', '반가웠어',
+    '반가웠어!', '반가웠어!', '반가웠어', '반가웠어', '반가웠어', '반가웠어!',
+  ],
+  120,
+  function(word) { typingSeeYa.textContent = word; },
+  function() { /* typing chaining... */ }
+);
+```
+
 ### CORS
 - CORS란 통신방법책이다. Origin이 상이하여도 통신이 가능하도록 하는방법이다.
 - CORS : Cross-Origin Resource Sharing

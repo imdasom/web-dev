@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>HTML-JS-CSS CheatSheet</title>
+	<!-- HTML5의 문자 부호화 방식 -->
+	<meta charset="utf-8">
+	<!-- IE9 이하 버전에서 HTML5에 대응하기 위한 자바스크립트 -->
+	<!--[if It IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js">
+	<!--[endif]>
+	<!-- 디바이스 사이즈에 맞추어 픽셀크기를 바꿔준다. 작은화면에서의 10px = 큰화면에서 1px과 같아보이도록 조정해준다 --> 
+	<!-- 특히 디바이스의 width/height이 달라질 때, 폰트도 같이 작아진다거나 div 박스도 같이 작아지거나 하지 않는다 -->
+	<meta name="viewport" content="width=device-width, intial-scale=1">
+	<!-- 폰트어썸선언 -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+	<style>
+		/* 레이아웃 스타일 */
+		/* 고정px값을 한 곳에서 관리한다 */
+		@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+		:root {
+			--main-color-1-1: #727933;
+			--main-color-1-2: #575c28;
+			--sub-color-1-1: #efefef;
+			--sub-color-1-2: #b9b9b9;
+			--background-color-1-1: #ffffff;
+			--background-color-1-2: #e6e6e6;
+			--light-font-color-1-1: #ffffff;
+			--header-min-heigth: 50px;
+			--footer-min-height: 50px;
+			--menu-min-height: 20px;
+			--content-min-height: 162px;
+			--content-min-height-2: calc(162px + 43px);
+			--content-padding-tb: 10px;
+			--content-padding-rl: 10px;
+			--header-padding-rl: 30px;
+			--max-width: 1000px;
+		}
+		body {
+			font-family: 'Noto Sans KR', sans-serif;
+			font-weight: 100;
+			margin: 0;
+			padding: 0;
+		}
+		.wrapper {
+			padding: var(--content-padding-tb) var(--content-padding-rl);
+		}
+		.wrapper.header {
+			background-color: var(--main-color-1-1);
+			min-height: var(--header-min-heigth);
+			color: var(--light-font-color-1-1);
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding-left: var(--header-padding-rl);
+			padding-right: var(--header-padding-rl);
+		}
+		.wrapper.menu {
+			background-color: var(--sub-color-1-1);
+			display: none;
+		}
+		.wrapper.content {
+			background-color: var(--background-color-1-1);
+			min-height: calc(100vh - var(--content-min-height));   
+			max-width: var(--max-width); /* 컨텐츠 영역은 무조건 최대 1000px로 고정한다. 화면사이즈를 늘려도 자연스럽게 연결됨 */
+			margin: 0 auto;
+		}
+		.wrapper.footer {
+			background-color: var(--background-color-1-1);
+			border-top: 1px solid var(--background-color-1-2);
+			height: var(--footer-min-height);
+		}	
+		/* 디바이스종류별 정리 https://css-tricks.com/snippets/css/media-queries-for-standard-devices/ */
+		/* device-pixel-ratio계산 방법 https://feel5ny.github.io/2018/05/13/mediaQuery_01/ */
+		/* 320px, 568px 이상인 경우 */
+		@media only screen 
+		  and (min-device-width: 320px) 
+		  and (min-device-width: 568px)
+		  and (-webkit-min-device-pixel-ratio: 2) {
+			.wrapper.header {
+				/* 동일 */
+			}
+			.wrapper.menu {
+				display: block; /* 화면 사이즈가 커지면 헤더 하단에 메뉴를 노출한다 */
+			}
+			.wrapper.content {
+				/* 동일 */
+			}
+			.wrapper.footer {
+				/* 동일 */
+			}
+		}
+		/* ----------- Non-Retina Screens ----------- */
+		@media screen 
+		  and (min-device-width: 1200px) 
+		  and (max-device-width: 1600px) 
+		  and (-webkit-min-device-pixel-ratio: 1) { 
+			.wrapper.header {
+				/* 동일 */
+			}
+			.wrapper.menu {
+				background-color: var(--sub-color-1-1);
+				display: block; /* 화면 사이즈가 커지면 헤더 하단에 메뉴를 노출한다 */
+			}
+			.wrapper.content {
+				/* 동일 */
+			}
+			.wrapper.footer {
+				/* 동일 */
+			}
+		}
+		
+	</style>
+	<style>
+		/* nav 스타일 */
+		nav ul {
+			list-style-type: none;
+			padding: 0px;
+			margin: 0px;
+			display: flex;
+			justify-content: space-evenly;
+			align-items: center;
+			flex-wrap: wrap;
+		}
+		nav ul li {
+			margin: 0px 10px;
+		}
+		.nav-button-close {
+			display: none;
+		}
+		.nav-button {
+			display: block;
+		}
+		.nav-open nav ul li {
+			margin: unset;
+		}
+		/* 메뉴가 펼쳐지면 body 스크롤을 막는다 */
+		.nav-open {
+			overflow-y: hidden;
+		}
+		/* 작은 화면에선 nav메뉴가 화면 전체를 차지하도록 한다 */	
+		.nav-open .wrapper.menu {
+			display: block;
+			height: calc(100vh - var(--header-min-heigth) - 20px);
+			width: 100vw;
+			max-width: 100%;
+			width: calc(100vw - var(--header-padding-rl) - var(--header-padding-rl));
+			max-width: 100%;
+			padding: 0px var(--header-padding-rl);
+		}
+		.nav-open .nav-button-close {
+			display: block;
+		}
+		.nav-open .nav-button {
+			display: none;
+		}
+		.nav-open nav ul {
+			display: flex;
+			flex-direction: column;
+			flex-wrap: wrap;
+			align-content: space-between;
+			height: inherit;
+		}
+		@media only screen 
+		  and (min-device-width: 320px) 
+		  and (min-device-width: 568px)
+		  and (-webkit-min-device-pixel-ratio: 2) {
+			.nav-button {
+				display: none;
+			}
+			.nav-button-close {
+				display: none;
+			}
+		}
+		/* ----------- Non-Retina Screens ----------- */
+		@media screen 
+		  and (min-device-width: 1200px) 
+		  and (max-device-width: 1600px) 
+		  and (-webkit-min-device-pixel-ratio: 1) { 
+			.nav-button {
+				display: none;
+			}
+			.nav-button-close {
+				display: none;
+			}
+		}
+	</style>
+	<style>
+		/* 레이아웃과 상관 없는 나머지 스타일 정의 */
+		.code-box {
+			background-color: var(--sub-color-1-1); 
+			margin: var(--content-padding-tb) 0px; 
+			padding: var(--content-padding-tb);
+		}
+	</style>
+</head>
+<body>
+<div id="layout">
+	<header class="wrapper header">
+		<div>Header</div>
+		<!-- 화면 사이즈에 따라 메뉴가 미노출 됨가 동시에 메뉴오픈 버튼이 나타난다 -->
+		<span id="navButton" class="nav-button" style="color: var(--light-font-color-1-1)"><i class="fas fa-bars"></i></span>
+		<span id="navCloseButton" class="nav-button-close" style="color: var(--light-font-color-1-1)"><i class="fas fa-times"></i></span>
+	</header>
+	<!-- 화면 사이즈에 따라 메뉴를 노출/미노출 -->
+	<nav class="wrapper menu">
+		<ul>
+			<li>Menu 1</li>
+			<li>Menu 2</li>
+			<li>Menu 3</li>
+			<li>Menu 4</li>
+			<li>Menu 5</li>
+			<li>Menu 6</li>
+		</ul>
+	</nav>
+	<section class="wrapper content">
+		<div>Section</div>
+		<div>
+			Footer가 항상 최하단에 위치하도록 하기 위해 Content영역의 min-height을 설정해준다.<br/>
+			vh는 뷰포트크기에 따라 가변값이 되므로 고정값만 정해주면 된다.<br/>
+			헤더와 푸터는 세로px이 정해져있는 경우가 많기 때문에 이 값을 이용한다.
+		</div>
+		<div class="code-box">min-height: calc(100vh - 166px);</div>
+		<div>
+			content영역의 min-height 계산하기
+		</div>
+		<div class="code-box">
+			① Header세로 50px + Header패딩 20px<br/>
+			② Footer세로 50px  + Footer패딩 20px<br/>
+			③ Content 패딩 20px<br/>
+			④ Header/Footer/Content border값 6px<br/><br/>
+			뷰 100vh에서 고정값으로 차지하는 px은 ① + ② + ③ + ④ = 166px<br/>
+			∴ min-height: calc(100vh - 166px);
+		</div>
+		<input type="checkbox" id="showLongContent" checked="checked"></input><label for="showLongContent">긴 본문 보기</label>
+		<div class="code-box" id="longContent">
+			<p>
+				Cras dictum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia mauris vel est.
+			</p>
+			<p>
+				Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+			</p>
+			<p>
+				Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis. Phasellus pellentesque purus in massa. Aenean in pede. Phasellus ac libero ac tellus pellentesque semper. Sed ac felis. Sed commodo, magna quis lacinia ornare, quam ante aliquam nisi, eu iaculis leo purus venenatis dui.
+				<ul>
+					<li>List item one</li>
+					<li>List item two</li>
+					<li>List item three</li>
+				</ul>
+			</p>
+			<p>
+				Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
+			</p>
+		</div>
+	</section>
+	<footer class="wrapper footer">
+		<div class="area-title">Footer</div>
+	</footer>
+</div>
+</body>
+<script type="text/javascript">
+	/* 메뉴버튼/메뉴닫기버튼 이벤트 */
+	var $navButtons = document.querySelectorAll('[class^="nav-button"]');
+		$navButtons.forEach(function($element, i) {
+			$element.addEventListener('click', function(event) {
+			var $nav = document.querySelector('body');
+			/* body에 nav-open 클래스를 토글시킨다 */
+			/* CSS를 통해 메뉴바 아이콘과 X 아이콘이 토글된다 */
+			if ($nav.classList.contains('nav-open')) {
+				$nav.classList.remove('nav-open');
+			} else {
+				$nav.classList.add('nav-open');
+			}
+		});
+		});
+</script>
+<script type="text/javascript">
+	/* 긴 본문 보기 show/hide 이벤트 */
+	var $showLongContent = document.getElementById('showLongContent');
+		$showLongContent.addEventListener('change', function(event) {
+			if (event.currentTarget.checked) {
+				document.getElementById('longContent').style.display = 'block';
+			} else {
+				document.getElementById('longContent').style.display = 'none';
+			}
+		});
+</script>
+</html>
