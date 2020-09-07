@@ -28,20 +28,24 @@
 			--background-color-1-3: #000000;
 			--light-font-color-1-1: #ffffff;
 			--header-min-heigth: 50px;
-			--footer-min-height: 50px;
+			--footer-min-height: 100px;
 			--menu-min-height: 20px;
 			--content-min-height: 219px;
 			--content-min-height-2: calc(219px + 43px);
 			--content-padding-tb: 10px;
 			--content-padding-rl: 10px;
 			--header-padding-rl: 30px;
-			--max-width: 1000px;
+			--max-width: 500px;
 		}
 		body {
 			font-family: 'Noto Sans KR', sans-serif;
 			font-weight: 100;
 			margin: 0;
 			padding: 0;
+		}
+		#layout {
+			max-width: 500px;
+			margin: 0 auto;
 		}
 		.wrapper {
 			padding: var(--content-padding-tb) var(--content-padding-rl);
@@ -246,6 +250,9 @@
 			width: 100%;
 			padding: 10px;
 			box-sizing: border-box;
+			border: 0px;
+			border-bottom: 1px solid #efefef;
+			margin-bottom: 25px;
 		}
 	</style>
 </head>
@@ -327,7 +334,9 @@
 
 	</section>
 	<footer class="wrapper footer">
-		<div class="area-title">Footer</div>
+		<div class="area-title">CompanyName</div>
+		<div class="area-title">ZipCode_Address</div>
+		<div class="area-title">1234-5678</div>
 	</footer>
 </div>
 </body>
