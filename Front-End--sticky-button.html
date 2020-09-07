@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>HTML-JS-CSS CheatSheet</title>
+	<!-- HTML5의 문자 부호화 방식 -->
+	<meta charset="utf-8">
+	<!-- IE9 이하 버전에서 HTML5에 대응하기 위한 자바스크립트 -->
+	<!--[if It IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js">
+	<!--[endif]>
+	<!-- 디바이스 사이즈에 맞추어 픽셀크기를 바꿔준다. 작은화면에서의 10px = 큰화면에서 1px과 같아보이도록 조정해준다 --> 
+	<!-- 특히 디바이스의 width/height이 달라질 때, 폰트도 같이 작아진다거나 div 박스도 같이 작아지거나 하지 않는다 -->
+	<meta name="viewport" content="width=device-width, intial-scale=1">
+	<!-- 폰트어썸선언 -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+	<style>
+		/* 레이아웃 스타일 */
+		/* 고정px값을 한 곳에서 관리한다 */
+		@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+		:root {
+			--main-color-1-1: #1365ba;
+			--main-color-1-2: #138cba;
+			--sub-color-1-1: #efefef;
+			--sub-color-1-2: #b9b9b9;
+			--sub-color-1-3: #ffffff;
+			--background-color-1-1: #ffffff;
+			--background-color-1-2: #e6e6e6;
+			--background-color-1-3: #000000;
+			--light-font-color-1-1: #ffffff;
+			--header-min-heigth: 50px;
+			--footer-min-height: 50px;
+			--menu-min-height: 20px;
+			--content-min-height: 219px;
+			--content-min-height-2: calc(219px + 43px);
+			--content-padding-tb: 10px;
+			--content-padding-rl: 10px;
+			--header-padding-rl: 30px;
+			--max-width: 1000px;
+		}
+		body {
+			font-family: 'Noto Sans KR', sans-serif;
+			font-weight: 100;
+			margin: 0;
+			padding: 0;
+		}
+		.wrapper {
+			padding: var(--content-padding-tb) var(--content-padding-rl);
+		}
+		.wrapper.header {
+			background-color: var(--main-color-1-1);
+			min-height: var(--header-min-heigth);
+			color: var(--light-font-color-1-1);
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding-left: var(--header-padding-rl);
+			padding-right: var(--header-padding-rl);
+		}
+		.wrapper.menu {
+			background-color: var(--sub-color-1-1);
+			display: none;
+		}
+		.wrapper.content {
+			background-color: var(--background-color-1-1);
+			min-height: calc(100vh - var(--content-min-height));
+			max-width: var(--max-width); /* 컨텐츠 영역은 무조건 최대 1000px로 고정한다. 화면사이즈를 늘려도 자연스럽게 연결됨 */
+			margin: 0 auto;
+		}
+		.wrapper.submit {
+			max-width: var(--max-width); /* 컨텐츠 영역은 무조건 최대 1000px로 고정한다. 화면사이즈를 늘려도 자연스럽게 연결됨 */
+			margin: 0 auto;
+			padding: 0;
+			position: relative;
+		}
+		.wrapper.footer {
+			background-color: var(--background-color-1-3);
+			border-top: 1px solid var(--background-color-1-3);
+			color: var(--light-font-color-1-1);
+			height: var(--footer-min-height);
+		}
+		/* 디바이스종류별 정리 https://css-tricks.com/snippets/css/media-queries-for-standard-devices/ */
+		/* device-pixel-ratio계산 방법 https://feel5ny.github.io/2018/05/13/mediaQuery_01/ */
+		/* 320px, 568px 이상인 경우 */
+		@media only screen
+		  and (min-device-width: 320px)
+		  and (min-device-width: 568px)
+		  and (-webkit-min-device-pixel-ratio: 2) {
+			.wrapper.header {
+				/* 동일 */
+			}
+			.wrapper.menu {
+				display: block; /* 화면 사이즈가 커지면 헤더 하단에 메뉴를 노출한다 */
+			}
+			.wrapper.content {
+				/* 동일 */
+			}
+			.wrapper.submit {
+				/* 동일 */
+			}
+			.wrapper.footer {
+				/* 동일 */
+			}
+		}
+		/* ----------- Non-Retina Screens ----------- */
+		@media screen
+		  and (min-device-width: 1200px)
+		  and (max-device-width: 1600px)
+		  and (-webkit-min-device-pixel-ratio: 1) {
+			.wrapper.header {
+				/* 동일 */
+			}
+			.wrapper.menu {
+				background-color: var(--sub-color-1-1);
+				display: block; /* 화면 사이즈가 커지면 헤더 하단에 메뉴를 노출한다 */
+			}
+			.wrapper.content {
+				/* 동일 */
+			}
+			.wrapper.submit {
+				/* 동일 */
+			}
+			.wrapper.footer {
+				/* 동일 */
+			}
+		}
+
+	</style>
+	<style>
+		/* nav 스타일 */
+		nav ul {
+			list-style-type: none;
+			padding: 0px;
+			margin: 0px;
+			display: flex;
+			justify-content: space-evenly;
+			align-items: center;
+			flex-wrap: wrap;
+		}
+		nav ul li {
+			margin: 0px 10px;
+		}
+		.nav-button-close {
+			display: none;
+		}
+		.nav-button {
+			display: block;
+		}
+		.nav-open nav ul li {
+			margin: unset;
+		}
+		/* 메뉴가 펼쳐지면 body 스크롤을 막는다 */
+		.nav-open {
+			overflow-y: hidden;
+		}
+		/* 작은 화면에선 nav메뉴가 화면 전체를 차지하도록 한다 */
+		.nav-open .wrapper.menu {
+			display: block;
+			height: calc(100vh - var(--header-min-heigth) - 20px);
+			width: calc(100vw - var(--header-padding-rl) - var(--header-padding-rl));
+			max-width: 100%;
+			padding: 0px var(--header-padding-rl);
+		}
+		.nav-open .nav-button-close {
+			display: block;
+		}
+		.nav-open .nav-button {
+			display: none;
+		}
+		.nav-open nav ul {
+			display: flex;
+			flex-direction: column;
+			flex-wrap: wrap;
+			align-content: space-between;
+			height: inherit;
+		}
+		@media only screen
+		  and (min-device-width: 320px)
+		  and (min-device-width: 568px)
+		  and (-webkit-min-device-pixel-ratio: 2) {
+			.nav-button {
+				display: none;
+			}
+			.nav-button-close {
+				display: none;
+			}
+		}
+		/* ----------- Non-Retina Screens ----------- */
+		@media screen
+		  and (min-device-width: 1200px)
+		  and (max-device-width: 1600px)
+		  and (-webkit-min-device-pixel-ratio: 1) {
+			.nav-button {
+				display: none;
+			}
+			.nav-button-close {
+				display: none;
+			}
+		}
+	</style>
+	<style>
+		/* 레이아웃과 상관 없는 나머지 스타일 정의 */
+		h1,h2,h3,h4,h5 {
+			font-weight: 100;
+			margin: 10px 0px;
+		}
+		.code-box {
+			background-color: var(--sub-color-1-1);
+			margin: var(--content-padding-tb) 0px;
+			padding: var(--content-padding-tb);
+		}
+		.button-sticky {
+			position: fixed;
+			bottom: 0;
+		}
+		.button-submit-1 {
+			border: 0;
+			outline: 0;
+			background-color: var(--main-color-1-2);
+			color: var(--sub-color-1-3);
+			width: 100%;
+			padding: 20px 0px;
+			cursor: pointer;
+			max-width: var(--max-width);
+		}
+		.basic-form fieldset {
+			border: none;
+			padding: 0px;
+			margin: 0px;
+		}
+		.basic-form legend {
+			padding: 0px;
+		}
+		.basic-form .form-title {
+			display: block;
+			margin-bottom: 10px;
+		}
+		.basic-form label {
+			display: block;
+		}
+		.basic-form .form-box {
+			font-size: 0.8em;
+		}
+		.basic-form input[type="name"],
+		.basic-form input[type="email"],
+		.basic-form input[type="password"]{
+			width: 100%;
+			padding: 10px;
+			box-sizing: border-box;
+		}
+	</style>
+</head>
+<body>
+<div id="layout">
+	<header class="wrapper header">
+		<div>Sticky Button with Footer</div>
+	</header>
+	<section class="wrapper content">
+		<div style="font-size: 0.8em; color: red; margin-bottom: 15px;">
+			https://jbee.io/web/optimize-scroll-event/ <br/>
+			저장버튼 스크롤 이벤트는 requestAnimationFrame()을 통해 최적화해야함
+		</div>
+		<form action="#" class="basic-form">
+			<fieldset>
+				<legend><span class="form-title">Create User Account</span></legend>
+				<div class="form-box">
+					<label for="name">Username </label>
+					<input type="name" name="username" value="Chris">
+				</div>
+				<div class="form-box">
+					<label for="email">Email </label>
+					<input type="email" name="email" value="chris@gmail.com">
+				</div>
+				<div class="form-box">
+					<label for="pwd">Password </label>
+					<input type="password" name="password" value="Wookie">
+				</div>
+			</fieldset>
+		</form>
+		<h4>Terms and Condition</h4>
+		<div class="code-box" id="longContent">
+			<p>
+				Cras dictum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia mauris vel est.
+			</p>
+			<p>
+				Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+			</p>
+			<p>
+				Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis. Phasellus pellentesque purus in massa. Aenean in pede. Phasellus ac libero ac tellus pellentesque semper. Sed ac felis. Sed commodo, magna quis lacinia ornare, quam ante aliquam nisi, eu iaculis leo purus venenatis dui.
+				<ul>
+					<li>List item one</li>
+					<li>List item two</li>
+					<li>List item three</li>
+				</ul>
+			</p>
+			<p>
+				Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
+			</p>
+			<p>
+				Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
+			</p>
+			<p>
+				Cras dictum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia mauris vel est.
+			</p>
+			<p>
+				Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+			</p>
+			<p>
+				Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis. Phasellus pellentesque purus in massa. Aenean in pede. Phasellus ac libero ac tellus pellentesque semper. Sed ac felis. Sed commodo, magna quis lacinia ornare, quam ante aliquam nisi, eu iaculis leo purus venenatis dui.
+				<ul>
+					<li>List item one</li>
+					<li>List item two</li>
+					<li>List item three</li>
+				</ul>
+			</p>
+			<p>
+				Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
+			</p>
+			<p>
+				Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
+			</p>
+		</div>
+	</section>
+	<section class="wrapper submit">
+		<button class="button-submit-1 button-sticky" onClick="javascript:alert('User account has created successfully');">
+			<span>저장</span>
+		</button>
+
+	</section>
+	<footer class="wrapper footer">
+		<div class="area-title">Footer</div>
+	</footer>
+</div>
+</body>
+<script type="text/javascript">
+	window.onload = function() {
+		/* submit 버튼을 위한 scroll 이벤트 */
+		/**
+		 * x,y 좌표 가져오는 API 참고: https://webclub.tistory.com/104
+		 * 뷰포트 참고: https://www.javascripttutorial.net/dom/css/check-if-an-element-is-visible-in-the-viewport/
+		 * 스크롤이벤트 최적화 참고: https://jbee.io/web/optimize-scroll-event/
+		 */
+		let oldScrollY = 0;
+		window.addEventListener('scroll', function(event) {
+			const scrollDirection = oldScrollY > this.scrollY ? 'UP' : 'DOWN';
+			oldScrollY = this.scrollY;
+
+			const $buttonSticky = document.querySelector('.wrapper .button-sticky');
+			const $footer = document.querySelector('.wrapper.footer');
+			if (scrollDirection === 'DOWN') {
+				const footerTop = $footer.getBoundingClientRect().top;
+				const submitTop = $buttonSticky.getBoundingClientRect().top;
+				if (Math.floor(footerTop) <= Math.floor(submitTop)) {
+					$buttonSticky.style.position = 'relative';
+				}ㅎ
+			} else {
+				const submitBottom = $buttonSticky.getBoundingClientRect().bottom;
+				const windowHeight = window.innerHeight;
+				if (Math.floor(submitBottom) >= Math.floor(windowHeight)) {
+					$buttonSticky.style.position = 'fixed';
+				}
+			}
+		});
+	};
+</script>
+</html>
