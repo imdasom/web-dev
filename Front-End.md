@@ -1,3 +1,57 @@
+### chosen.js 커스터마이징
+슬라이드인/아웃 애니메이션 효과주기
+```javascript
+// chosen.jquery.js
+
+$.fn.extend: function(options) {
+  ...
+  return this.each (function() {
+    var $this = $(this);
+    var chosen;
+    
+    // 드롭다운 펼쳐질 때 slideDown 이벤트추가
+    $this.on('chosen:showing_dropdown', function() {
+      var chosen_container = $...('.chosen-container');
+      var chosen_dropdown = $...('.chosen-drop');
+      ...
+      $(chosen_dropdown).slideDown(300);
+    });
+    
+    // 드롭다운 접힐 때 slideUp 이벤트추가
+    $this.on('chosen:hiding_dropdown', function() {
+      ...
+      $(chosen_dropdown).slideUp(300);
+    });
+  })
+}
+...
+
+// disabled_search 옵션에 따라 검색input박스가 영역을 차지하게 된다.
+// 애니메이션이 자연스럽지 못하게 되므로 html을 조금 수정해준다.
+Chosen.prototype.set_up_html = function() {
+  ...
+  // disabled_search 여부에 따라 분기처리
+  if (!this.options.disabled_search) {
+    ... // 기존 그대로 유지한다
+  } else {
+    // 검색박스가 display:none;이므로 
+    // chosen-search가 chosen-results보다 하단에 위치하도록 변경해준다.
+    this.container.html(....); 
+  }
+};
+```
+```css
+chosen.css
+.chosen-container .chosen-drop {
+  ...
+  left: -9999px; --> 주석처리해준다
+  ...
+}
+.chosen-container.chosen-with-drop .chosen-drop {
+  left: 0; --> 주석처리해준다
+}
+```
+
 ### Typing Animation
 - 타이핑 애니메이션 효과는 css, javascript로 구현할 수 있다
 - ::after는 IE8 이상에서만 동작하므로, 크로스브라우징을 지원하지 못하는 단점이 있다  
