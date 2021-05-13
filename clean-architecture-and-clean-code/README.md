@@ -16,4 +16,13 @@ Validation 을 변경에 유연하고 사용자에게 편리하려면 어떻게 
 - 마찬가지로 에러문구가 수정되어도 API 서버만 배포하면 된다 👍🏻
 - 사용자에게 즉각적인 피드백을 줄 수 없다. 사용자는 서버에 submit하기 전까지 자신이 잘못된 작업을 하고 있는지 알 수 없다. 👎🏻
 
-### Validation체크는 `백엔드`에서 하면서 `프론트엔드`에서 사용자에게 즉각적인 피드백을 줄 수 있을까?
+### 고민포인트
+Validation체크는 `백엔드`에서 하면서 `프론트엔드`에서 사용자에게 즉각적인 피드백을 줄 수 있을까?
+
+## DTO의 중복에 대한 고민 (from 클린아키텍쳐 책)
+[https://woowabros.github.io/tools/2019/10/02/clean-architecture-experience.html](https://woowabros.github.io/tools/2019/10/02/clean-architecture-experience.html)
+1. 진짜 중복
+    - 한 인스턴스가 변경되면, 동일한 변경을 그 인스턴스의 모든 복사본에 반드시 적용해야한다.
+2. 우발적 중복(거짓된 중복)
+    - 중복으로 보이는 두 코드의 영역이 각자의 경로로 발전한다면, 즉 서로 다른 속도와 다른 이유로 변경된다면 이 두 코드는 진짜 중복이 아니다.
+3. CreateRequest - UpdateRequest와 같은 DTO는 분리되는 것이 좋다.
