@@ -1,14 +1,9 @@
 # web-dev
-html, css, react, algorithm 등 웹관련 지식 히스토리
-
-### UI/UX develop
-- html 웹표준  
-http://htmlpreview.github.io/?https://github.com/imdasom/web-dev/blob/master/Front-End--html-spec.html  
-- 반응형 레이아웃  
-http://htmlpreview.github.io/?https://github.com/imdasom/web-dev/blob/master/Front-End--responsive-layout.html  
-- Sticky Button  
-http://htmlpreview.github.io/?https://github.com/imdasom/web-dev/blob/master/Front-End--sticky-button.html  
-- 사용자 경험을 위한 애니메이션 처리    
-http://htmlpreview.github.io/?https://github.com/imdasom/web-dev/blob/master/Front-End--transform-animation.html  
-- 타이핑 애니메이션  
-http://htmlpreview.github.io/?https://github.com/imdasom/web-dev/blob/master/Front-End--typing-animation.html  
+- 개발환경
+- 기술검토
+- 서버
+- 알고리즘
+- 오브젝트 (책과 코드스피츠를 학습하며..)
+- 웹표준 (어떻게 하면 HTML과 CSS를 잘 사용할 수 있을까 고민하며..)
+- 좋은코드에대한고민 (어떻게 하면 더 좋은 코드를 작성할 수 있을까 고민하며..)
+- 프론트엔드
